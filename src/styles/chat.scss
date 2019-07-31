@@ -1,0 +1,34 @@
+.chat-thread {
+    background-color: #374558;
+    color: white !important;
+    display: grid;
+    grid-template-columns: 11fr 1fr;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.chat-holder {
+    height: 400px;
+}
+
+.chat-bubble {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 13px;
+}
+
+.chat-right {
+    float: right;
+    width: auto;
+    margin-right: 15px;
+    background-color: #4c6281;
+}
+.chat-left {
+    background-color: #374558;
+}
+
+#message {
+    margin-top: 10px;
+}

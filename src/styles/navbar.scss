@@ -1,0 +1,24 @@
+.toggle-button {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 100;
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.navbar {
+    background-color: #1f2835 !important;
+
+    .nav-item {
+        color: white !important;
+    }
+
+    .logout-button {
+        color: #eb5353 !important;
+    }
+}
+
+.count-contributions {
+    color: white;
+}
