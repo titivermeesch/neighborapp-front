@@ -22,7 +22,7 @@ class Account extends Component {
 
     handleConfirm = () => {
         this.setState({ open: false })
-        fetch('http://localhost:3000/users', {
+        fetch('https://neighborapp-backend.herokuapp.com/users', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

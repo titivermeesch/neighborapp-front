@@ -15,23 +15,20 @@ class Chat extends Component {
     }
 
     requestParticipantThread = () => {
-        fetch(
-            `http://localhost:3000/chat_link/${localStorage.getItem('email')}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        fetch(`https://neighborapp-backend.herokuapp.com/chat_link/${localStorage.getItem('email')}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        )
+        })
             .then(res => res.json())
             .then(data => this.setState({ data2: data.data }))
     }
 
     async requestThread(data) {
-        await fetch(`http://localhost:3000/message_threads/${data}`, {
+        await fetch(`https://neighborapp-backend.herokuapp.com/message_threads/${data}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -13,17 +13,14 @@ class Contribution extends Component {
     }
 
     async requestSpecificContribution() {
-        await fetch(
-            `http://localhost:3000/contributions/${this.props.match.params.id}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        await fetch(`https://neighborapp-backend.herokuapp.com/contributions/${this.props.match.params.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        )
+        })
             .then(response => response.json())
             .then(data => {
                 this.setState({ data: data.data })
@@ -39,21 +36,18 @@ class Contribution extends Component {
             user_id: localStorage.getItem('email')
         }
 
-        fetch(
-            `http://localhost:3000/contributions/${this.props.match.params.id}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        fetch(`https://neighborapp-backend.herokuapp.com/contributions/${this.props.match.params.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        )
+        })
             .then(res => res.json())
             .then(data => {
                 if (data.data[0].status === 'open') {
-                    fetch('http://localhost:3000/participants', {
+                    fetch('https://neighborapp-backend.herokuapp.com/participants', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -68,35 +62,26 @@ class Contribution extends Component {
     }
 
     removeParticipationToContribution = id_request => {
-        fetch(
-            `http://localhost:3000/participants/${id_request}/${localStorage.getItem(
-                'email'
-            )}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        fetch(`https://neighborapp-backend.herokuapp.com/participants/${id_request}/${localStorage.getItem('email')}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        ).then(() => window.location.reload())
+        }).then(() => window.location.reload())
     }
 
     getFullfilledButton = d => {
         if (d.required_people === 0) {
             if (localStorage.getItem('email') === d.user_id) {
-                return (
-                    <Button onClick={() => this.markAsCompleted(d)}>
-                        Mark as completed (You can't undo this)
-                    </Button>
-                )
+                return <Button onClick={() => this.markAsCompleted(d)}>Mark as completed (You can't undo this)</Button>
             }
         }
     }
 
     markAsCompleted = d => {
-        fetch(`http://localhost:3000/requests/${d.id}`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/requests/${d.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -118,21 +103,13 @@ class Contribution extends Component {
 
             if (!b) {
                 return (
-                    <Button
-                        positive
-                        onClick={() => this.participateToContribution(c.id)}
-                    >
+                    <Button positive onClick={() => this.participateToContribution(c.id)}>
                         Participate
                     </Button>
                 )
             } else {
                 return (
-                    <Button
-                        negative
-                        onClick={() =>
-                            this.removeParticipationToContribution(c.id)
-                        }
-                    >
+                    <Button negative onClick={() => this.removeParticipationToContribution(c.id)}>
                         Stop participating
                     </Button>
                 )
@@ -159,19 +136,14 @@ class Contribution extends Component {
     }
 
     forceRemoveParticipant = id => {
-        fetch(
-            `http://localhost:3000/participants/${
-                this.props.match.params.id
-            }/${id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        fetch(`http://localhost:3000/participants/${this.props.match.params.id}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        ).then(() => window.location.reload())
+        }).then(() => window.location.reload())
     }
 
     hideFader = () => {
@@ -185,11 +157,7 @@ class Contribution extends Component {
                     return (
                         <div className="custom-modal" key={uuidv1()}>
                             <Link to="/c" onClick={this.hideFader}>
-                                <Icon
-                                    name="close"
-                                    className="close-button"
-                                    size="big"
-                                />
+                                <Icon name="close" className="close-button" size="big" />
                             </Link>
                             <h1>
                                 {d.title} (Status : {d.status})
@@ -197,22 +165,13 @@ class Contribution extends Component {
                             <p>{d.description}</p>
                             <p>Author: {d.user_id}</p>
                             <p>Required people : {d.required_people}</p>
-                            <p>
-                                Participants: (Click on one to remove him from
-                                the participants)
-                            </p>
+                            <p>Participants: (Click on one to remove him from the participants)</p>
                             {this.state.participants.map(p => {
-                                if (
-                                    localStorage.getItem('email') === d.user_id
-                                ) {
+                                if (localStorage.getItem('email') === d.user_id) {
                                     return (
                                         <div
                                             key={uuidv1()}
-                                            onClick={() =>
-                                                this.forceRemoveParticipant(
-                                                    p.user_id
-                                                )
-                                            }
+                                            onClick={() => this.forceRemoveParticipant(p.user_id)}
                                             className="participant-name"
                                         >
                                             {p.user_id}

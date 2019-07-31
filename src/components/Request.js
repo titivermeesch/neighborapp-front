@@ -14,7 +14,7 @@ class Request extends Component {
     }
 
     requestCreation = data => {
-        fetch('http://localhost:3000/requests', {
+        fetch('https://neighborapp-backend.herokuapp.com/requests', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,9 +26,7 @@ class Request extends Component {
             .then(response => response.json())
             .then(data => {
                 this.requestMessageThreadCreation(data)
-                document.querySelector(
-                    '.request-saved-message'
-                ).style.visibility = 'visible'
+                document.querySelector('.request-saved-message').style.visibility = 'visible'
                 document.querySelector('.request-form').reset()
             })
             .catch(e => {
@@ -43,7 +41,7 @@ class Request extends Component {
             id_request: data.data.id
         }
 
-        fetch('http://localhost:3000/message_threads', {
+        fetch('https://neighborapp-backend.herokuapp.com/message_threads', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,15 +64,7 @@ class Request extends Component {
         const x = this.props.x
         const y = this.props.y
 
-        if (
-            title !== '' &&
-            typeF !== '' &&
-            date !== '' &&
-            people !== '' &&
-            description !== '' &&
-            x !== 0 &&
-            y !== 0
-        ) {
+        if (title !== '' && typeF !== '' && date !== '' && people !== '' && description !== '' && x !== 0 && y !== 0) {
             const formatedJson = {
                 user_id: localStorage.getItem('email'),
                 title: title,
@@ -95,8 +85,7 @@ class Request extends Component {
     }
 
     componentDidMount() {
-        document.querySelector('.request-saved-message').style.visibility =
-            'hidden'
+        document.querySelector('.request-saved-message').style.visibility = 'hidden'
     }
 
     render() {
@@ -111,11 +100,7 @@ class Request extends Component {
                 />
                 <div className="custom-modal">
                     <Link to="/c" onClick={this.hideFader}>
-                        <Icon
-                            name="close"
-                            className="close-button"
-                            size="big"
-                        />
+                        <Icon name="close" className="close-button" size="big" />
                     </Link>
                     <h1>Make a request</h1>
                     <Form className="request-form">
@@ -132,38 +117,19 @@ class Request extends Component {
                         </Form.Field>
                         <Form.Field required>
                             <label>Date</label>
-                            <input
-                                placeholder="Username"
-                                type="date"
-                                id="date"
-                            />
+                            <input placeholder="Username" type="date" id="date" />
                         </Form.Field>
                         <Form.Field required>
                             <label>People required</label>
-                            <input
-                                placeholder="People required"
-                                type="number"
-                                id="people"
-                                min="1"
-                            />
+                            <input placeholder="People required" type="number" id="people" min="1" />
                         </Form.Field>
                         <Form.Field className="hidden-form" required>
                             <label>Latitude</label>
-                            <input
-                                placeholder="Latitude"
-                                type="number"
-                                id="x"
-                                value={this.props.x}
-                            />
+                            <input placeholder="Latitude" type="number" id="x" value={this.props.x} />
                         </Form.Field>
                         <Form.Field className="hidden-form" required>
                             <label>Longitude</label>
-                            <input
-                                placeholder="Longitude"
-                                type="number"
-                                id="y"
-                                value={this.props.y}
-                            />
+                            <input placeholder="Longitude" type="number" id="y" value={this.props.y} />
                         </Form.Field>
                         <Form.TextArea
                             label="Description (Max 300 characters)"
@@ -172,9 +138,7 @@ class Request extends Component {
                             required
                             maxLength="300"
                         />
-                        <Button onClick={this.getLocation}>
-                            Pick location on map
-                        </Button>
+                        <Button onClick={this.getLocation}>Pick location on map</Button>
                         <Button onClick={this.generateJsonData} positive>
                             Save
                         </Button>

@@ -19,7 +19,7 @@ class Contributions extends Component {
     }
 
     fetchContributions = () => {
-        fetch(`http://localhost:3000/requests/${localStorage.getItem('email')}`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/requests/${localStorage.getItem('email')}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-User-Email': localStorage.getItem('email'),
@@ -37,7 +37,7 @@ class Contributions extends Component {
     }
 
     getParticipatingContributions = () => {
-        fetch(`http://localhost:3000/participant_link/${localStorage.getItem('email')}`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/participant_link/${localStorage.getItem('email')}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ class Contributions extends Component {
     deleteContribution = id => () => {
         this.setState({ open: false })
 
-        fetch(`http://localhost:3000/requests/${id}`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/requests/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

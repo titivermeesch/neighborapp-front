@@ -17,7 +17,7 @@ class ChatThread extends Component {
     }
 
     async postChatMessage(data) {
-        await fetch(`http://localhost:3000/messages/`, {
+        await fetch(`https://neighborapp-backend.herokuapp.com/messages/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,19 +30,14 @@ class ChatThread extends Component {
     }
 
     async requestChat() {
-        await fetch(
-            `http://localhost:3000/chat_discussions/${
-                this.props.match.params.id
-            }`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        await fetch(`https://neighborapp-backend.herokuapp.com/chat_discussions/${this.props.match.params.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        )
+        })
             .then(response => response.json())
             .then(data => {
                 this.setState({ data: data.data })
@@ -53,17 +48,14 @@ class ChatThread extends Component {
     }
 
     async fetchMessages() {
-        await fetch(
-            `http://localhost:3000/messages/${this.props.match.params.id}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-User-Email': localStorage.getItem('email'),
-                    'X-User-Token': localStorage.getItem('token')
-                }
+        await fetch(`https://neighborapp-backend.herokuapp.com/messages/${this.props.match.params.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': localStorage.getItem('email'),
+                'X-User-Token': localStorage.getItem('token')
             }
-        )
+        })
             .then(res => res.json())
             .then(data => this.setState({ messages: data.data }))
             .catch(e => {
@@ -101,29 +93,16 @@ class ChatThread extends Component {
                     return (
                         <div className="custom-modal">
                             <Link to="/c" onClick={this.hideFader}>
-                                <Icon
-                                    name="close"
-                                    className="close-button"
-                                    size="big"
-                                />
+                                <Icon name="close" className="close-button" size="big" />
                             </Link>
                             <h1>Chat : {d.title}</h1>
-                            <ScrollToBottom
-                                className={ROOT_CSS}
-                                scrollViewClassName="scroll-chat"
-                            >
+                            <ScrollToBottom className={ROOT_CSS} scrollViewClassName="scroll-chat">
                                 <div className="chat-holder">
                                     {this.state.messages.map(m => {
-                                        if (
-                                            m.message_author ===
-                                            localStorage.getItem('email')
-                                        ) {
+                                        if (m.message_author === localStorage.getItem('email')) {
                                             return (
                                                 <div>
-                                                    <div
-                                                        className="chat-bubble chat-right"
-                                                        key={m.id}
-                                                    >
+                                                    <div className="chat-bubble chat-right" key={m.id}>
                                                         Me : {m.content}
                                                     </div>
                                                     <br />
@@ -134,12 +113,8 @@ class ChatThread extends Component {
                                         } else {
                                             return (
                                                 <div>
-                                                    <div
-                                                        className="chat-bubble chat-left"
-                                                        key={m.id}
-                                                    >
-                                                        {m.message_author} :{' '}
-                                                        {m.content}
+                                                    <div className="chat-bubble chat-left" key={m.id}>
+                                                        {m.message_author} : {m.content}
                                                     </div>
                                                     <br />
                                                 </div>
@@ -148,16 +123,9 @@ class ChatThread extends Component {
                                     })}
                                 </div>
                             </ScrollToBottom>
-                            <Form
-                                className="request-form"
-                                onSubmit={this.requestMessageSave}
-                            >
+                            <Form className="request-form" onSubmit={this.requestMessageSave}>
                                 <Form.Field>
-                                    <input
-                                        placeholder="Write your message"
-                                        id="message"
-                                        maxLength="150"
-                                    />
+                                    <input placeholder="Write your message" id="message" maxLength="150" />
                                 </Form.Field>
                             </Form>
                         </div>

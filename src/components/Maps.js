@@ -36,7 +36,7 @@ export class Maps extends Component {
     }
 
     fetchRequestLocations = () => {
-        fetch(`http://localhost:3000/requests/`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/requests/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
