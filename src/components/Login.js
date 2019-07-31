@@ -12,7 +12,7 @@ class Login extends Component {
     }
 
     requestLogin = data => {
-        fetch('http://localhost:3000/sessions', {
+        fetch('https://neighborapp-backend.herokuapp.com/sessions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
