@@ -13,7 +13,7 @@ class Register extends Component {
     requestAccountCreation(data) {
         this.hideErrorMessages()
 
-        fetch('http://localhost:3000/users', {
+        fetch('https://neighborapp-backend.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
