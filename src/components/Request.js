@@ -28,6 +28,9 @@ class Request extends Component {
                 this.requestMessageThreadCreation(data)
                 document.querySelector('.request-saved-message').style.visibility = 'visible'
                 document.querySelector('.request-form').reset()
+                setTimeout(() => {
+                    document.querySelector('.request-saved-message').style.visibility = 'hidden'
+                }, 2500)
             })
             .catch(e => {
                 console.log(e)
