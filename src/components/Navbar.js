@@ -9,7 +9,6 @@ import '../styles/navbar.scss'
 export default class SidebarExampleTransitions extends Component {
     state = {
         visible: true,
-        faded: false,
         contributions: 0
     }
 
@@ -22,12 +21,16 @@ export default class SidebarExampleTransitions extends Component {
     }
 
     handleFadeChange = () => {
-        if (this.state.faded && !this.state.visible) {
-            this.setState({ faded: !this.state.faded })
+        if (!this.state.visible) {
             document.getElementsByClassName('fader')[0].style.visibility = 'hidden'
         } else {
-            this.setState({ faded: !this.state.faded })
             document.getElementsByClassName('fader')[0].style.visibility = 'visible'
+        }
+
+        if (window.innerWidth <= 700) {
+            this.setState({
+                visible: false
+            })
         }
     }
 

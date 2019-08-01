@@ -91,6 +91,10 @@ export class Maps extends Component {
                     styles={this.props.mapStyles}
                     disableDefaultUI={true}
                     onClick={this.saveCoords}
+                    center={{
+                        lat: this.state.loc_x,
+                        lng: this.state.loc_y
+                    }}
                 >
                     {this.state.data.map(m => {
                         if (m.status === 'open') {

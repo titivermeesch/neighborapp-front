@@ -139,12 +139,21 @@ class Register extends Component {
                             </Form.Field>
                             <Form.Field>
                                 <label>Id card</label>
-                                <input placeholder="Id card" id="idcard" type="file" required />
+                                <input
+                                    placeholder="Id card"
+                                    id="idcard"
+                                    type="file"
+                                    accept="image/*, application/pdf"
+                                    required
+                                />
                             </Form.Field>
                             <Button inverted type="submit" onClick={this.generateJsonData}>
                                 Create an account
                             </Button>
+                            <br />
+                            <br />
                         </Form>
+                        <Button onClick={() => (window.location = '/login')}>Login instead</Button>
                     </div>
                 </Container>
             </div>

@@ -6,6 +6,12 @@ body {
     height: 100%;
 }
 
+@media screen and (max-width: 700px) {
+    body {
+        overflow-y: visible;
+    }
+}
+
 a {
     text-decoration: none;
     color: white;

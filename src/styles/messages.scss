@@ -1,25 +1,7 @@
 .message {
     position: absolute !important;
-    width: 85vw !important;
-    margin: 40px !important;
-    margin-left: 200px !important;
-}
-
-.mail-match-message {
-    margin: auto !important;
-    width: 100% !important;
     visibility: hidden;
-}
-
-.request-saved-message {
-    z-index: 1000000;
-    width: 70%;
-}
-
-.password-match-message {
-    z-index: 1000000;
-    width: 70%;
-    visibility: hidden;
+    z-index: 10000;
 }
 
 .error-404 {

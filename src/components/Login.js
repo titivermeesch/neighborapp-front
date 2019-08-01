@@ -112,8 +112,8 @@ class Login extends Component {
                             </Button>
                             <br />
                             <br />
-                            <Button onClick={() => (window.location = '/register')}>Register instead</Button>
                         </Form>
+                        <Button onClick={() => (window.location = '/register')}>Register instead</Button>
                     </div>
                 </Container>
             </div>
