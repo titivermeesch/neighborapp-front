@@ -35,18 +35,11 @@ class App extends Component {
         if (localStorage.getItem('token') != null) {
             return (
                 <div className="App">
-                    <Route
-                        path="/c/contributions"
-                        exact
-                        component={Contributions}
-                    />
+                    <Route path="/c/contributions" exact component={Contributions} />
                     <Route path="/c/request" exact component={Request} />
                     <Route path="/c/account" exact component={Account} />
                     <Route path="/c/chat" exact component={Chat} />
-                    <Route
-                        path="/c/contribution/:id"
-                        component={Contribution}
-                    />
+                    <Route path="/c/contribution/:id" component={Contribution} />
                     <Route path="/c/chatthread/:id" component={ChatThread} />
                     <div className="fader" />
                     <Navbar />
@@ -70,9 +63,8 @@ class App extends Component {
                         </ul>
                     </div>
                     <div className="error-404">
-                        We couldn't load this page because you are not logged in
-                        (Maybe your session expired?), please click{' '}
-                        <a href="/login">here</a> and try again.
+                        We couldn't load this page because you are not logged in (Maybe your session expired?), please
+                        click <a href="/login">here</a> and try again.
                     </div>
                 </div>
             )

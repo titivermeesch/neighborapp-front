@@ -153,7 +153,7 @@ class Register extends Component {
                             <br />
                             <br />
                         </Form>
-                        <Button onClick={() => (window.location = '/login')}>Login instead</Button>
+                        <Button onClick={() => (window.location = '/')}>Login instead</Button>
                     </div>
                 </Container>
             </div>

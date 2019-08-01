@@ -44,7 +44,7 @@ export default class SidebarExampleTransitions extends Component {
             }
         }).then(() => {
             localStorage.clear()
-            window.location.pathname = '/login'
+            window.location.pathname = '/'
         })
     }
 
