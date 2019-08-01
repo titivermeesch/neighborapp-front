@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom'
 import { Icon, Form, Button, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { getMapCoords } from '../redux/actions/index'
-import ScrollToBottom from 'react-scroll-to-bottom'
-import { css } from 'glamor'
 
 import '../styles/modal.scss'
-
-const ROOT_CSS = css({
-    height: 500
-})
 
 class Request extends Component {
     getLocation = () => {
@@ -109,49 +103,47 @@ class Request extends Component {
                         <Icon name="close" className="close-button" size="big" />
                     </Link>
 
-                    <ScrollToBottom className={ROOT_CSS}>
-                        <h1>Make a request</h1>
-                        <Form className="request-form">
-                            <Form.Field required>
-                                <label>Title</label>
-                                <input placeholder="Title" id="title" />
-                            </Form.Field>
-                            <Form.Field>
-                                <label>Type</label>
-                                <select name="types" id="type">
-                                    <option value="normal">Normal request</option>
-                                    <option value="goods">Goods</option>
-                                </select>
-                            </Form.Field>
-                            <Form.Field required>
-                                <label>Date</label>
-                                <input placeholder="Username" type="date" id="date" />
-                            </Form.Field>
-                            <Form.Field required>
-                                <label>People required</label>
-                                <input placeholder="People required" type="number" id="people" min="1" />
-                            </Form.Field>
-                            <Form.Field className="hidden-form" required>
-                                <label>Latitude</label>
-                                <input placeholder="Latitude" type="number" id="x" value={this.props.x} />
-                            </Form.Field>
-                            <Form.Field className="hidden-form" required>
-                                <label>Longitude</label>
-                                <input placeholder="Longitude" type="number" id="y" value={this.props.y} />
-                            </Form.Field>
-                            <Form.TextArea
-                                label="Description (Max 300 characters)"
-                                placeholder="Tell us more about your request"
-                                id="description"
-                                required
-                                maxLength="300"
-                            />
-                            <Button onClick={this.getLocation}>Pick location on map</Button>
-                            <Button onClick={this.generateJsonData} positive>
-                                Save
-                            </Button>
-                        </Form>
-                    </ScrollToBottom>
+                    <h1>Make a request</h1>
+                    <Form className="request-form">
+                        <Form.Field required>
+                            <label>Title</label>
+                            <input placeholder="Title" id="title" />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Type</label>
+                            <select name="types" id="type">
+                                <option value="normal">Normal request</option>
+                                <option value="goods">Goods</option>
+                            </select>
+                        </Form.Field>
+                        <Form.Field required>
+                            <label>Date</label>
+                            <input placeholder="Username" type="date" id="date" />
+                        </Form.Field>
+                        <Form.Field required>
+                            <label>People required</label>
+                            <input placeholder="People required" type="number" id="people" min="1" />
+                        </Form.Field>
+                        <Form.Field className="hidden-form" required>
+                            <label>Latitude</label>
+                            <input placeholder="Latitude" type="number" id="x" value={this.props.x} />
+                        </Form.Field>
+                        <Form.Field className="hidden-form" required>
+                            <label>Longitude</label>
+                            <input placeholder="Longitude" type="number" id="y" value={this.props.y} />
+                        </Form.Field>
+                        <Form.TextArea
+                            label="Description (Max 300 characters)"
+                            placeholder="Tell us more about your request"
+                            id="description"
+                            required
+                            maxLength="300"
+                        />
+                        <Button onClick={this.getLocation}>Pick location on map</Button>
+                        <Button onClick={this.generateJsonData} positive>
+                            Save
+                        </Button>
+                    </Form>
                 </div>
             </div>
         )
