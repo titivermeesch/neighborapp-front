@@ -376,6 +376,6 @@ export default connect(
     { saveMapCoords }
 )(
     GoogleApiWrapper({
-        apiKey: 'AIzaSyA5EqRGJ-YR-2ZCGxThhtFZKwNBy6wk73c'
+        apiKey: 'AIzaSyCw1Cu5QmZqsFLWq-D7m12E3Qqjjj13xWY'
     })(Maps)
 )
