@@ -71,7 +71,8 @@ class ChatThread extends Component {
         const json = {
             thread_id: id,
             message_author: owner,
-            content: content
+            content: content,
+            date: new Date()
         }
         this.postChatMessage(JSON.stringify(json))
         document.querySelector('.request-form').reset()
