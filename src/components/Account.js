@@ -41,7 +41,7 @@ class Account extends Component {
     }
 
     updateUserAccount = () => {
-        fetch('http://localhost:3000/users', {
+        fetch('https://neighborapp-backend.herokuapp.com/users', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,8 +110,8 @@ class Account extends Component {
             lastname: lastname,
             username: username,
             address: address,
-            email: email
-            //password: password
+            email: email,
+            password: password
         }
 
         return data
