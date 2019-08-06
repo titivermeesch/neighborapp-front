@@ -13,7 +13,7 @@ import './styles/messages.scss'
 
 class App extends Component {
     async requestToken(data) {
-        await fetch(`http://localhost:3000/sessions/${data}`, {
+        await fetch(`https://neighborapp-backend.herokuapp.com/sessions/${data}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
