@@ -1,2 +1,0 @@
-export const FETCH_REQUESTS = 'FETCH_REQUESTS'
-export const NEW_REQUEST = 'NEW_REQUEST'

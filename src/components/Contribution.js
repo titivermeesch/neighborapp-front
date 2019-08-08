@@ -118,7 +118,7 @@ class Contribution extends Component {
     }
 
     getParticipantsForRequest = id => {
-        fetch(`http://localhost:3000/participants/${id}`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/participants/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ class Contribution extends Component {
     }
 
     forceRemoveParticipant = id => {
-        fetch(`http://localhost:3000/participants/${this.props.match.params.id}/${id}`, {
+        fetch(`https://neighborapp-backend.herokuapp.com/participants/${this.props.match.params.id}/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
