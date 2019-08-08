@@ -132,14 +132,14 @@ class Register extends Component {
                                 <input placeholder="Address" id="address" required />
                             </Form.Field>
                             <Form.Field>
-                                <input placeholder="Password" id="password" type="password" minlength="6" required />
+                                <input placeholder="Password" id="password" type="password" minLength="6" required />
                             </Form.Field>
                             <Form.Field>
                                 <input
                                     placeholder="Password confirmation"
                                     type="password"
                                     id="password_c"
-                                    minlength="6"
+                                    minLength="6"
                                     required
                                 />
                             </Form.Field>

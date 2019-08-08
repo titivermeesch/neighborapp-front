@@ -92,7 +92,7 @@ class ChatThread extends Component {
             <div>
                 {this.state.data.map(d => {
                     return (
-                        <div className="custom-modal">
+                        <div className="custom-modal" key={d.id}>
                             <Link to="/c" onClick={this.hideFader}>
                                 <Icon name="close" className="close-button" size="big" />
                             </Link>

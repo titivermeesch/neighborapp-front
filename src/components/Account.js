@@ -30,6 +30,7 @@ class Account extends Component {
                 'X-User-Token': localStorage.getItem('token')
             }
         })
+        window.location = '/'
     }
 
     handleCancel = () => {
