@@ -163,7 +163,7 @@ class Contribution extends Component {
                                 {d.title} (Status : {d.status})
                             </h1>
                             <p>{d.description}</p>
-                            <p>Author: {d.user_id}</p>
+                            <p>Request created by {d.user_id}</p>
                             <p>Required people : {d.required_people}</p>
                             <p>Participants: (Click on one to remove him from the participants)</p>
                             {this.state.participants.map(p => {

@@ -15,6 +15,7 @@ export class Maps extends Component {
         data: [],
         loc_x: 0,
         loc_y: 0,
+        locRendered: false,
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
@@ -31,7 +32,8 @@ export class Maps extends Component {
     showPosition = position => {
         this.setState({
             loc_x: position.coords.latitude,
-            loc_y: position.coords.longitude
+            loc_y: position.coords.longitude,
+            locRendered: true
         })
     }
 
@@ -76,72 +78,85 @@ export class Maps extends Component {
         }
     }
 
+    centerMoved = (mapProps, map) => {
+        this.setState({
+            loc_x: map.center.lat(),
+            loc_y: map.center.lng()
+        })
+    }
+
+    componentWillMount() {
+        this.getUserLocation()
+    }
+
     componentDidMount() {
         this.fetchRequestLocations()
-        this.getUserLocation()
     }
 
     render() {
         return (
             <div>
                 {this.renderRedirect()}
-                <Map
-                    google={this.props.google}
-                    zoom={14}
-                    styles={this.props.mapStyles}
-                    disableDefaultUI={true}
-                    onClick={this.saveCoords}
-                    center={{
-                        lat: this.state.loc_x,
-                        lng: this.state.loc_y
-                    }}
-                >
-                    {this.state.data.map(m => {
-                        if (m.status === 'open') {
-                            if (m.request_type === 'normal') {
-                                return (
-                                    <Marker
-                                        key={uuidv1()}
-                                        position={{ lat: m.x, lng: m.y }}
-                                        title={m.title}
-                                        data={m}
-                                        onClick={this.onMarkerClick}
-                                        icon={{
-                                            url: '../../data/welfareroom.png',
-                                            anchor: new this.props.google.maps.Point(48, 48),
-                                            scaledSize: new this.props.google.maps.Size(48, 48)
-                                        }}
-                                    />
-                                )
-                            } else {
-                                return (
-                                    <Marker
-                                        key={uuidv1()}
-                                        position={{ lat: m.x, lng: m.y }}
-                                        title={m.title}
-                                        data={m}
-                                        onClick={this.onMarkerClick}
-                                        icon={{
-                                            url: '../../data/tortillas1.png',
-                                            anchor: new this.props.google.maps.Point(48, 48),
-                                            scaledSize: new this.props.google.maps.Size(48, 48)
-                                        }}
-                                    />
-                                )
+                {this.state.locRendered ? (
+                    <Map
+                        google={this.props.google}
+                        zoom={14}
+                        styles={this.props.mapStyles}
+                        disableDefaultUI={true}
+                        onClick={this.saveCoords}
+                        onDragend={this.centerMoved}
+                        initialCenter={{
+                            lat: this.state.loc_x,
+                            lng: this.state.loc_y
+                        }}
+                    >
+                        {this.state.data.map(m => {
+                            if (m.status === 'open') {
+                                if (m.request_type === 'normal') {
+                                    return (
+                                        <Marker
+                                            key={uuidv1()}
+                                            position={{ lat: m.x, lng: m.y }}
+                                            title={m.title}
+                                            data={m}
+                                            onClick={this.onMarkerClick}
+                                            icon={{
+                                                url: '../../data/welfareroom.png',
+                                                anchor: new this.props.google.maps.Point(48, 48),
+                                                scaledSize: new this.props.google.maps.Size(48, 48)
+                                            }}
+                                        />
+                                    )
+                                } else {
+                                    return (
+                                        <Marker
+                                            key={uuidv1()}
+                                            position={{ lat: m.x, lng: m.y }}
+                                            title={m.title}
+                                            data={m}
+                                            onClick={this.onMarkerClick}
+                                            icon={{
+                                                url: '../../data/tortillas1.png',
+                                                anchor: new this.props.google.maps.Point(48, 48),
+                                                scaledSize: new this.props.google.maps.Size(48, 48)
+                                            }}
+                                        />
+                                    )
+                                }
                             }
-                        }
-                    })}
-                    <InfoWindowEx marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
-                        <div>
-                            <h1>{this.state.selectedPlace.title}</h1>
-                            <div>{this.state.selectedPlace.description}</div>
-                            <br />
-                            <Button onClick={() => this.openContribution(this.state.selectedPlace.id)}>
-                                Read more
-                            </Button>
-                        </div>
-                    </InfoWindowEx>
-                </Map>
+                        })}
+                        <InfoWindowEx marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+                            <div>
+                                <h1>{this.state.selectedPlace.title}</h1>
+                                <div>{this.state.selectedPlace.description}</div>
+                                <br />
+                                <Button onClick={() => this.openContribution(this.state.selectedPlace.id)}>
+                                    Read more
+                                </Button>
+                            </div>
+                        </InfoWindowEx>
+                    </Map>
+                ) : null}
             </div>
         )
     }

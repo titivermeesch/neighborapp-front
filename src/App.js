@@ -8,6 +8,7 @@ import Account from './components/Account'
 import Chat from './components/Chat'
 import Contribution from './components/Contribution'
 import ChatThread from './components/ChatThread'
+import Login from './components/Login'
 
 import './styles/messages.scss'
 
@@ -46,28 +47,7 @@ class App extends Component {
                 </div>
             )
         } else {
-            return (
-                <div>
-                    <div className="area">
-                        <ul className="circles">
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                        </ul>
-                    </div>
-                    <div className="error-404">
-                        We couldn't load this page because you are not logged in (Maybe your session expired?), please
-                        click <a href="/login">here</a> and try again.
-                    </div>
-                </div>
-            )
+            return <Login />
         }
     }
 }

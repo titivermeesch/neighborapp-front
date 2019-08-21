@@ -30,7 +30,7 @@ class Request extends Component {
                 document.querySelector('.request-form').reset()
                 setTimeout(() => {
                     document.querySelector('.request-saved-message').style.visibility = 'hidden'
-                }, 2500)
+                }, 2000)
             })
             .catch(e => {
                 console.log(e)
@@ -80,15 +80,21 @@ class Request extends Component {
                 description: description
             }
             this.requestCreation(JSON.stringify(formatedJson))
+        } else if (x === 0 && y === 0) {
+            document.querySelector('.request-location-message').style.visibility = 'visible'
+            setTimeout(() => {
+                document.querySelector('.request-location-message').style.visibility = 'hidden'
+            }, 2000)
+        } else {
+            document.querySelector('.request-error-message').style.visibility = 'visible'
+            setTimeout(() => {
+                document.querySelector('.request-error-message').style.visibility = 'hidden'
+            }, 2000)
         }
     }
 
     hideFader = () => {
         document.getElementsByClassName('fader')[0].style.visibility = 'hidden'
-    }
-
-    componentDidMount() {
-        document.querySelector('.request-saved-message').style.visibility = 'hidden'
     }
 
     render() {
@@ -101,6 +107,20 @@ class Request extends Component {
                     positive
                     className="request-saved-message"
                 />
+                <Message
+                    icon="inbox"
+                    header="Error"
+                    content="We are missing some information here..."
+                    negative
+                    className="request-error-message"
+                />
+                <Message
+                    icon="inbox"
+                    header="Error"
+                    content="You didn't pick a location..."
+                    negative
+                    className="request-location-message"
+                />
                 <div className="custom-modal">
                     <Link to="/c" onClick={this.hideFader}>
                         <Icon name="close" className="close-button" size="big" />
@@ -110,30 +130,30 @@ class Request extends Component {
                     <Form className="request-form">
                         <Form.Field required>
                             <label>Title</label>
-                            <input placeholder="Title" id="title" />
+                            <input placeholder="Title" id="title" required />
                         </Form.Field>
                         <Form.Field>
                             <label>Type</label>
                             <select name="types" id="type">
                                 <option value="normal">Normal request</option>
-                                <option value="goods">Goods</option>
+                                <option value="goods">Material</option>
                             </select>
                         </Form.Field>
                         <Form.Field required>
                             <label>Date</label>
-                            <input placeholder="Username" type="date" id="date" />
+                            <input placeholder="Username" type="date" id="date" required />
                         </Form.Field>
                         <Form.Field required>
                             <label>People required</label>
-                            <input placeholder="People required" type="number" id="people" min="1" />
+                            <input placeholder="People required" type="number" id="people" min="1" required />
                         </Form.Field>
                         <Form.Field className="hidden-form" required>
                             <label>Latitude</label>
-                            <input placeholder="Latitude" type="number" id="x" value={this.props.x} />
+                            <input placeholder="Latitude" type="number" id="x" value={this.props.x} required />
                         </Form.Field>
                         <Form.Field className="hidden-form" required>
                             <label>Longitude</label>
-                            <input placeholder="Longitude" type="number" id="y" value={this.props.y} />
+                            <input placeholder="Longitude" type="number" id="y" value={this.props.y} required />
                         </Form.Field>
                         <Form.TextArea
                             label="Description (Max 300 characters)"
