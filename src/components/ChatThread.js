@@ -100,7 +100,16 @@ class ChatThread extends Component {
                             <ScrollToBottom className={ROOT_CSS} scrollViewClassName="scroll-chat">
                                 <div className="chat-holder">
                                     {this.state.messages.map(m => {
-                                        if (m.message_author === localStorage.getItem('email')) {
+                                        if (m.message_type === 'alert') {
+                                            return (
+                                                <div>
+                                                    <div className="chat-alert" key={m.id}>
+                                                        {m.content}
+                                                    </div>
+                                                    <br />
+                                                </div>
+                                            )
+                                        } else if (m.message_author === localStorage.getItem('email')) {
                                             return (
                                                 <div>
                                                     <div className="chat-bubble chat-right" key={m.id}>

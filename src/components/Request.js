@@ -150,11 +150,11 @@ class Request extends Component {
                         </Form.Field>
                         <Form.Field className="hidden-form" required>
                             <label>Latitude</label>
-                            <input placeholder="Latitude" type="number" id="x" value={this.props.x} required />
+                            <input type="number" id="x" value={this.props.x} required />
                         </Form.Field>
                         <Form.Field className="hidden-form" required>
                             <label>Longitude</label>
-                            <input placeholder="Longitude" type="number" id="y" value={this.props.y} required />
+                            <input type="number" id="y" value={this.props.y} required />
                         </Form.Field>
                         <Form.TextArea
                             label="Description (Max 300 characters)"
