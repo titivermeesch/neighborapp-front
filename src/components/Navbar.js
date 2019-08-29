@@ -92,40 +92,36 @@ export default class SidebarExampleTransitions extends Component {
                     width="thin"
                     className="navbar"
                 >
-                    <Link to="/c">
-                        <Menu.Item className="nav-item" onClick={this.handleAnimationChange} link={true}>
-                            <Icon name="map" />
-                            Map
-                        </Menu.Item>
-                    </Link>
-                    <Link to="/c/contributions">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
-                            <Icon name="users" />
-                            My Contributions
-                        </Menu.Item>
-                    </Link>
-                    <Link to="/c/request">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
-                            <Icon name="paper plane outline" />
-                            New Request
-                        </Menu.Item>
-                    </Link>
-                    <Link to="/c/account">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
-                            <Icon name="user" />
-                            Account
-                        </Menu.Item>
-                    </Link>
-                    <Link to="/c/chat">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
-                            <Icon name="chat" />
-                            Chat
-                        </Menu.Item>
-                    </Link>
-                    <Menu.Item className="nav-item logout-button" onClick={this.logout} link={true}>
+                    <Menu.Item className="nav-item" onClick={this.handleAnimationChange} as={Link} to="/c">
+                        <Icon name="map" />
+                        Map
+                    </Menu.Item>
+
+                    <Menu.Item className="nav-item" onClick={this.handleFadeChange} as={Link} to="/c/contributions">
+                        <Icon name="users" />
+                        My Contributions
+                    </Menu.Item>
+
+                    <Menu.Item className="nav-item" onClick={this.handleFadeChange} as={Link} to="/c/request">
+                        <Icon name="paper plane outline" />
+                        New Request
+                    </Menu.Item>
+
+                    <Menu.Item className="nav-item" onClick={this.handleFadeChange} as={Link} to="/c/account">
+                        <Icon name="user" />
+                        Account
+                    </Menu.Item>
+
+                    <Menu.Item className="nav-item" onClick={this.handleFadeChange} as={Link} to="/c/chat">
+                        <Icon name="chat" />
+                        Chat
+                    </Menu.Item>
+
+                    <Menu.Item className="nav-item logout-button" onClick={this.logout}>
                         <Icon name="window close" />
                         <strong>Logout</strong>
                     </Menu.Item>
+
                     <div className="count-contributions">
                         {this.state.contributions}
                         <br />
