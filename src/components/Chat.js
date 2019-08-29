@@ -27,8 +27,8 @@ class Chat extends Component {
             .then(data => this.setState({ data2: data.data }))
     }
 
-    async requestThread(data) {
-        await fetch(`https://neighborapp-backend.herokuapp.com/message_threads/${data}`, {
+    requestThread(data) {
+        fetch(`https://neighborapp-backend.herokuapp.com/message_threads/${data}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

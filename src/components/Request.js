@@ -29,7 +29,8 @@ class Request extends Component {
                 document.querySelector('.request-saved-message').style.visibility = 'visible'
                 document.querySelector('.request-form').reset()
                 setTimeout(() => {
-                    document.querySelector('.request-saved-message').style.visibility = 'hidden'
+                    const m = document.querySelector('.request-saved-message')
+                    if (m) m.style.visibility = 'hidden'
                 }, 2000)
             })
             .catch(e => {

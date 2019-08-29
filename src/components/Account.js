@@ -77,7 +77,9 @@ class Account extends Component {
         password = document.getElementById('password').value
         password_c = document.getElementById('password_c').value
 
-        if (firstname === '') {
+        firstname = !firstname ? (firstname = document.getElementById('firstname').placeholder) : firstname /////
+
+        if (!firstname) {
             firstname = document.getElementById('firstname').placeholder
         }
 

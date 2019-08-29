@@ -93,36 +93,36 @@ export default class SidebarExampleTransitions extends Component {
                     className="navbar"
                 >
                     <Link to="/c">
-                        <Menu.Item className="nav-item" onClick={this.handleAnimationChange}>
+                        <Menu.Item className="nav-item" onClick={this.handleAnimationChange} link={true}>
                             <Icon name="map" />
                             Map
                         </Menu.Item>
                     </Link>
                     <Link to="/c/contributions">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange}>
+                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
                             <Icon name="users" />
                             My Contributions
                         </Menu.Item>
                     </Link>
                     <Link to="/c/request">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange}>
+                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
                             <Icon name="paper plane outline" />
                             New Request
                         </Menu.Item>
                     </Link>
                     <Link to="/c/account">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange}>
+                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
                             <Icon name="user" />
                             Account
                         </Menu.Item>
                     </Link>
                     <Link to="/c/chat">
-                        <Menu.Item className="nav-item" onClick={this.handleFadeChange}>
+                        <Menu.Item className="nav-item" onClick={this.handleFadeChange} link={true}>
                             <Icon name="chat" />
                             Chat
                         </Menu.Item>
                     </Link>
-                    <Menu.Item className="nav-item logout-button" onClick={this.logout}>
+                    <Menu.Item className="nav-item logout-button" onClick={this.logout} link={true}>
                         <Icon name="window close" />
                         <strong>Logout</strong>
                     </Menu.Item>
