@@ -149,7 +149,7 @@ class Register extends Component {
                                     placeholder="Id card"
                                     id="idcard"
                                     type="file"
-                                    accept="image/*, application/pdf"
+                                    accept=".jpg, .jpeg, .png, .pdf"
                                     required
                                 />
                             </Form.Field>
