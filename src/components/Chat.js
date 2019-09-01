@@ -59,7 +59,7 @@ class Chat extends Component {
                 <h1>Chat</h1>
                 {this.state.data.map(d => {
                     return (
-                        <Link to={`/c/chatthread/${d.id}`}>
+                        <Link to={`/c/chatthread/${d.id}`} key={d.id}>
                             <div className="chat-thread">
                                 <div>
                                     <h2>{d.title}</h2>
@@ -70,7 +70,7 @@ class Chat extends Component {
                 })}
                 {this.state.data2.map(d => {
                     return (
-                        <Link to={`/c/chatthread/${d.id}`}>
+                        <Link to={`/c/chatthread/${d.id}`} key={d.id}>
                             <div className="chat-thread">
                                 <div>
                                     <h2>{d.title}</h2>

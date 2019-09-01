@@ -102,19 +102,15 @@ class ChatThread extends Component {
                                     {this.state.messages.map(m => {
                                         if (m.message_type === 'alert') {
                                             return (
-                                                <div>
-                                                    <div className="chat-alert" key={m.id}>
-                                                        {m.content}
-                                                    </div>
+                                                <div key={m.id}>
+                                                    <div className="chat-alert">{m.content}</div>
                                                     <br />
                                                 </div>
                                             )
                                         } else if (m.message_author === localStorage.getItem('email')) {
                                             return (
-                                                <div>
-                                                    <div className="chat-bubble chat-right" key={m.id}>
-                                                        Me : {m.content}
-                                                    </div>
+                                                <div key={m.id}>
+                                                    <div className="chat-bubble chat-right">Me : {m.content}</div>
                                                     <br />
                                                     <br />
                                                     <br />
@@ -122,8 +118,8 @@ class ChatThread extends Component {
                                             )
                                         } else {
                                             return (
-                                                <div>
-                                                    <div className="chat-bubble chat-left" key={m.id}>
+                                                <div key={m.id}>
+                                                    <div className="chat-bubble chat-left">
                                                         {m.message_author} : {m.content}
                                                     </div>
                                                     <br />
